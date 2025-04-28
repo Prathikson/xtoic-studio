@@ -46,12 +46,12 @@ const Hero = () => {
                 <video src={getVideoSrc(currentIndex === totalVideos + 1 ? 1 : currentIndex)} autoPlay loop muted id='' className='absolute left-0 top-0 size-full object-cover object-center' onLoadedData={handleVideoLoad}/>
 
             </div>
-            <h1 className='special-font hero-heading uppercase absolute bottom-5 right-5z-40 text-blue-75 '>
+            <h1 className='special-font hero-heading uppercase absolute bottom-5 right-5 z-50 text-blue-75 '>
                 Pr<b>a</b>thikson
             </h1>
             <div className='absolute left-0 top-0 z-40 size-full'>
                 <div className='mt-24 px-5 sm:px-10'>
-                    <h1 className='special-font hero-heading text-blue-100'><b>P</b>ortfoli<b>o</b></h1>
+                    <h1 className='special-font hero-heading text-blue-100'>Po<b>r</b>tfoli<b>o</b></h1>
                     <p className='mb-5 max-w-65 font-robert-regular text-blue-100'>Enter the World of Infinite Possibilities<br/> The place where everything is possible</p>
                 </div>
 

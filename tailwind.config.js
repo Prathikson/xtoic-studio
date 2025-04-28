@@ -39,7 +39,9 @@ export default {
           100: '#0B0B0C', // frozen black (new, deeper than normal black)
         }
 
-      }
+      },
+
+   
     },
   },
   plugins: [],

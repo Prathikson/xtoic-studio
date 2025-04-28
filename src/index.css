@@ -38,6 +38,11 @@ body {
   }
 }
 
+::selection {
+  background-color: #A4DE02; /* Avocado green */
+  color: #0B0B0C; /* Frozen black */
+}
+
 @layer utilities {
   .border-hsla {
     @apply border border-white/20;
