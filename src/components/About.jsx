@@ -39,9 +39,11 @@ const About = () => {
         />
 
         <div className="about-subtext">
-          <p>Delivering Digital Experience to Companies</p>
+          <h2 className="text-semibold text-2xl text-zoroRed">Delivering Digital Experience to Companies</h2>
           <p className="text-mattBlack">
-            XTOIC is a studio created on the core value of transforming comapnies into a Brand with amazing digital experiences
+            XTOIC Studio is a creative tech house where design meets disruption.
+Our goal is to build bold, high-impact digital experiences that move, breathe, and connect.
+We envision a web where every interaction feels alive and we’re here to lead that evolution.
           </p>
         </div>
       </div>

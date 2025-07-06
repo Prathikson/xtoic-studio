@@ -57,7 +57,7 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
   const handleMouseLeave = () => setHoverOpacity(0);
 
   return (
-    <div className="relative size-full">
+    <div id="features" className="relative size-full">
       <video
         src={src}
         loop
@@ -65,7 +65,7 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
         autoPlay
         className="absolute left-0 top-0 size-full object-cover object-center"
       />
-      <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
+      <div className="relative z-10 flex size-full flex-col justify-between p-5 text-lightGray">
         <div>
           <h1 className="bento-title special-font">{title}</h1>
           {description && (
@@ -103,12 +103,10 @@ const Features = () => (
     <div className="container mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
         <p className="font-circular-web text-lg text-zoroRed">
-          Into the Metagame Layer
+          Designs that slap. Code that flies. Interactions that make you go “woah“
         </p>
         <p className="max-w-md font-circular-web text-lg text-carbonBlack opacity-50">
-          Immerse yourself in a rich and ever-expanding universe where a vibrant
-          array of products converge into an interconnected overlay experience
-          on your world.
+          At XTOIC Studio, we blend tech, art, and a bit of madness to build digital experiences that actually stand out.
         </p>
       </div>
 
