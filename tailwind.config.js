@@ -37,8 +37,16 @@ export default {
         },
         black: {
           100: '#0B0B0C', // frozen black (new, deeper than normal black)
-        }
+        },
+        zoroRed: "#de0f3f",
+        beige: '#fffef0',
+        darkGreen: '#003934',
+        carbonBlack: "#1f1f1f",
+        mattBlack: '#3b3b3b',
+        lightGray: "#f1f1f1",
 
+        white60: "rgba(255, 255, 255, 0.6)",
+        gray80: "rgba(0, 0, 0, 0.8)",
       },
 
    
