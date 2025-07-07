@@ -8,6 +8,9 @@ import Footer from "./components/Footer";
 import CookieProviderWrapper from "./components/CookieConsent/CookieProviderWrapper";
 import CookieBanner from "./components/CookieConsent/CookieBanner";
 import CookieModal from "./components/CookieConsent/CookieModal";
+import Project from "./components/Project";
+import Pricing from "./components/Pricing";
+import Testimonials from "./components/Testimonials";
 
 
 function App() {
@@ -18,7 +21,10 @@ function App() {
         <Hero />
         <About />
         <Features />
+        {/* <Project/> */}
         <Story />
+        <Testimonials/>
+        <Pricing/>
         <Contact />
         <Footer />
         {/* Place cookie banner and modal here */}
