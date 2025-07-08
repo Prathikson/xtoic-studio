@@ -78,6 +78,7 @@ const NavBar = () => {
               title="Let's Talk"
               rightIcon={<TiLocationArrow />}
               containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
+              href={'#contact'}
             />
           </div>
 

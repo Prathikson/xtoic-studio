@@ -42,7 +42,7 @@ const Testimonials = () => {
             What Our Clients Say?
           </p>
           <AnimatedTitle
-            title="our <b>p</b>ricing <b>p</b>lans"
+            title="Client <b>Test</b><b>imonial</b>"
             className="special-font !text-4xl md:!text-6xl font-zentry font-black leading-[1]"
             textColor="text-mattBlack"
           />

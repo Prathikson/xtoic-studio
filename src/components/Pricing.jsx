@@ -44,7 +44,7 @@ const pricingTiers = [
       "Custom CMS or Headless Setup",
       "Priority Delivery & Support",
     ],
-    icon: <Flame className="text-zoroRed" size={20} />,
+    icon: <Flame className="text-lightGray" size={20} />,
     hoverBg: "hover:bg-zoroRed",
     textColor: "group-hover:text-white",
     button: "bg-white text-black group-hover:bg-white group-hover:text-zoroRed",
@@ -90,7 +90,7 @@ const Pricing = () => {
                 ))}
               </ul>
               <div>
-                <h4 className={`text-2xl md:text-3xl font-bold mb-3 ${tier.textColor}`}>{tier.price}</h4>
+                <h4 className={`text-2xl md:text-3xl font-special mb-3 ${tier.textColor}`}>{tier.price}</h4>
                 <Button
                   title="Get Started"
                   containerClass={`font-semibold w-full group-hover:scale-105 transition-transform ${tier.button}`}
