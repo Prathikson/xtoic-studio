@@ -1,5 +1,5 @@
-import AnimatedTitle from "./AnimatedTitle";
-import Button from "./Button";
+import AnimatedTitle from "../ui/AnimatedTitle";
+import Button from "../ui/Button";
 
 const ImageClipBox = ({ src, clipClass }) => (
   <div className={clipClass}>
@@ -39,7 +39,7 @@ const Contact = () => {
           </p>
 
           <AnimatedTitle
-            title="let&#39;s b<b>u</b>ild the <br /> new era of <br /> g<b>a</b>ming t<b>o</b>gether."
+            title="let&#39;s b<b>u</b>ild the <br /> new era of <br /> W<b>e</b>b E<b>x</b>perience"
             className="special-font !md:text-[6.2rem] w-full font-zentry !text-5xl !font-black !leading-[.9]"
             textColor="text-white"
           />

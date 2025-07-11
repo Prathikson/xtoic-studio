@@ -3,9 +3,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 
-import AnimatedTitle from "./AnimatedTitle";
-import HeroTriangle from "./models/HeroTriangle";
-import ScrambleHeader from "./ui/ScrambleHeader";
+import AnimatedTitle from "../ui/AnimatedTitle";
+import HeroTriangle from "../models/HeroTriangle";
+import ScrambleHeader from "../ui/ScrambleHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 

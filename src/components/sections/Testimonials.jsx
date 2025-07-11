@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { testimonials } from '../data/testimonials';
-import AnimatedTitle from './AnimatedTitle';
+import { testimonials } from '../../data/testimonials';
+import AnimatedTitle from '../ui/AnimatedTitle';
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -73,7 +73,7 @@ const Testimonials = () => {
 
       {/* Testimonial Card */}
       <motion.div
-        className="bg-carbonBlack text-lightGray w-full rounded-lg shadow-lg p-10 mb-12 relative overflow-hidden min-h-[600px] flex flex-col justify-center"
+        className="bg-carbonBlack text-lightGray w-[80dvw] rounded-2xl shadow-lg p-10 mb-12 relative overflow-hidden min-h-[800px] flex flex-col justify-center"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -96,7 +96,7 @@ const Testimonials = () => {
                   {currentTestimonial.highlight}
                 </span>
                 <motion.div
-                  className="absolute -top-1 -left-1 w-full h-full bg-lightGray opacity-30 rounded-lg blur-sm -z-10"
+                  className="absolute -top-1 -left-1 w-full h-full bg-lightGray opacity-30 rounded-2xl blur-sm -z-10"
                   initial={{ scaleY: 0, opacity: 0 }}
                   animate={{ scaleY: 1, opacity: 0.3 }}
                   transition={{ delay: 0.8, duration: 0.8, ease: 'easeOut' }}
@@ -128,10 +128,10 @@ const Testimonials = () => {
                   />
                 </motion.div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg text-black mb-1">
+                  <h4 className="font-semibold text-lg text-zoroRed mb-1">
                     {currentTestimonial.author}
                   </h4>
-                  <p className="text-gray-600 text-sm">{currentTestimonial.title}</p>
+                  <p className="text-lightGray text-sm">{currentTestimonial.title}</p>
                 </div>
               </div>
             </div>

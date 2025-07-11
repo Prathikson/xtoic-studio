@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronRight, X, ExternalLink } from "lucide-react";
-import AnimatedTitle from "./AnimatedTitle";
+import AnimatedTitle from "../../ui/AnimatedTitle";
 import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [

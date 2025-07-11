@@ -1,7 +1,7 @@
 import { useState } from "react";
-import TermsModal from "./models/TermsModal";
+import TermsModal from "../models/TermsModal";
 import { FaDiscord, FaTwitter, FaYoutube, FaMedium } from "react-icons/fa";
-import { useCookieConsentContext } from "./CookieConsent/CookieProviderWrapper"; // Adjust path accordingly
+import { useCookieConsentContext } from "../CookieConsent/CookieProviderWrapper"; // Adjust path accordingly
 
 const socialLinks = [
   { href: "https://discord.com", icon: <FaDiscord /> },

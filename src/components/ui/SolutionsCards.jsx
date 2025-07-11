@@ -29,7 +29,7 @@ const SolutionsCards = ({ solutions = [] }) => {
 
   return (
     <div
-      className={`w-full px-6 py-12 max-w-7xl mx-auto grid gap-8 ${
+      className={`w-full px-6 py-12 max-w-full mx-auto grid gap-8 ${
         isSingle ? 'grid-cols-1 place-items-center' : 'grid-cols-1 sm:grid-cols-2'
       }`}
     >
@@ -79,7 +79,7 @@ const SolutionsCards = ({ solutions = [] }) => {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-black/70 text-white text-xs px-4 py-2 rounded-xl font-medium"
+                      className="bg-zoroRed text-white text-xs px-4 py-2 rounded-xl font-medium"
                     >
                       {tag}
                     </span>
@@ -88,7 +88,7 @@ const SolutionsCards = ({ solutions = [] }) => {
               )}
             </AnimatePresence>
 
-            <button className="bg-white text-black font-medium px-10 py-4 rounded-lg text-sm flex items-center gap-2 shadow-md hover:bg-black hover:text-white transition">
+            <button className="bg-white text-black font-medium px-10 py-4 rounded-lg text-sm flex items-center gap-2 shadow-md hover:bg-carbonBlack hover:text-white transition">
               {item.title}
               <ChevronRight className="w-4 h-4" />
             </button>

@@ -1,50 +1,10 @@
 import gsap from "gsap";
 import { useRef } from "react";
 
-import Button from "./Button";
-import AnimatedTitle from "./AnimatedTitle";
-import ScrambleHeader from "./ui/ScrambleHeader";
-import SolutionsCards from "./models/SolutionsCards";
+import Button from "../ui/Button";
+import AnimatedTitle from "../ui/AnimatedTitle";
+import ScrambleHeader from "../ui/ScrambleHeader";
 
-
-const solutions = [
-  {
-    id: 1,
-    title: "Homerun",
-    subtitle: "Creative Things",
-    tags: ["3D", "Website"],
-    imageUrl: "/img/gallery-2.webp",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-person-typing-on-a-laptop-computer-4904-large.mp4",
-    websiteUrl: "#"
-  },
-  {
-    id: 2,
-    title: "Boa Concept",
-    subtitle: "Logistics Solutions",
-    tags: ["Branding", "Website"],
-    imageUrl: "/img/gallery-3.webp",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-industrial-conveyor-belt-system-4892-large.mp4",
-    websiteUrl: "#"
-  },
-  {
-    id: 1,
-    title: "Homerun",
-    subtitle: "Creative Things",
-    tags: ["3D", "Website"],
-    imageUrl: "/img/gallery-2.webp",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-person-typing-on-a-laptop-computer-4904-large.mp4",
-    websiteUrl: "#"
-  },
-  {
-    id: 2,
-    title: "Boa Concept",
-    subtitle: "Logistics Solutions",
-    tags: ["Branding", "Website"],
-    imageUrl: "/img/gallery-3.webp",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-industrial-conveyor-belt-system-4892-large.mp4",
-    websiteUrl: "#"
-  },
-];
 
 const FloatingImage = () => {
   const frameRef = useRef(null);
@@ -160,7 +120,7 @@ We don’t just build websites we create an experience, movement, and magic on e
           </div>
         </div>
 
-          <SolutionsCards solutions={solutions} />
+          
 
       </div>
     </div>

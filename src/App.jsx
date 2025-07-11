@@ -1,16 +1,17 @@
-import About from "./components/About";
-import Hero from "./components/Hero";
-import NavBar from "./components/Navbar";
-import Features from "./components/Features";
-import Story from "./components/Story";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 import CookieProviderWrapper from "./components/CookieConsent/CookieProviderWrapper";
 import CookieBanner from "./components/CookieConsent/CookieBanner";
 import CookieModal from "./components/CookieConsent/CookieModal";
-import Project from "./components/Project";
-import Pricing from "./components/Pricing";
-import Testimonials from "./components/Testimonials";
+import NavBar from "./components/layout/Navbar";
+import Hero from "./components/sections/Hero";
+import About from "./components/sections/About";
+import Featutres from "./components/sections/Features";
+import Story from "./components/sections/Story";
+import Pricing from "./components/sections/Pricing";
+import Contact from "./components/sections/Contact";
+import Footer from "./components/layout/Footer";
+import Testimonials from "./components/sections/Testimonials";
+import Test from "./components/sections/Test";
+import Project from "./components/sections/Project";
 
 
 function App() {
@@ -20,14 +21,14 @@ function App() {
         <NavBar />
         <Hero />
         <About />
-        <Features />
-        {/* <Project/> */}
+        <Featutres />
+        <Test/>
+        <Project/>
         <Story />
         <Testimonials/>
         <Pricing/>
-        <Contact />
+        <Contact/>
         <Footer />
-        {/* Place cookie banner and modal here */}
         <CookieBanner />
         <CookieModal />
       </main>
