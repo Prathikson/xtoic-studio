@@ -44,7 +44,7 @@ const solutions = [
 
 const Project = () => {
   return (
-    <section className="w-full min-h-screen bg-black flex flex-col items-center justify-start py-16 px-6 sm:px-10 md:px-20">
+    <section className="w-full min-h-screen py-32 px-6 md:px-12 bg-lightGray">
       
       {/* Header */}
       <div className="relative mb-12 flex flex-col items-center gap-5 max-w-7xl mx-auto text-center">

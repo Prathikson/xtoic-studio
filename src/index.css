@@ -4,12 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+
+
 body {
-  width: 100dvw;
   overflow-x: hidden;
   background-color: #f1f1f1;
   font-family: "General Sans", sans-serif;
 }
+
 
 @layer base {
   @font-face {
