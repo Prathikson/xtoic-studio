@@ -28,41 +28,10 @@ const storyParagraphs = [
 
 const About = () => {
   const starRef = useRef(null);
-  const clipRef = useRef(null);
   const paragraphsRef = useRef([]);
   const scrollTriggersRef = useRef([]);
 
-  // Hero 3D model animation with reduced pin range
-  useEffect(() => {
-    if (!clipRef.current || !starRef.current) return;
-
-    clipRef.current.style.height = "120vh";
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: clipRef.current,
-        start: "top top",
-        end: "bottom+=50%", // shorten pin range to avoid overlap with text
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-        markers: false,
-      },
-    });
-
-    tl.to(starRef.current, {
-      scale: 1.3,
-      ease: "power1.out",
-      transformOrigin: "center center",
-    });
-
-    return () => {
-      if (tl.scrollTrigger) tl.scrollTrigger.kill();
-      tl.kill();
-    };
-  }, []);
-
-  // Mouse interaction for 3D model
+  // Remove scroll pin & scale animation from 3D hero model — just keep tilt
   useEffect(() => {
     if (!starRef.current) return;
 
@@ -118,136 +87,128 @@ const About = () => {
     };
   }, []);
 
-  // Story paragraphs animation + pinning fix
+  // Story paragraphs animation + pinning + color fill
   useEffect(() => {
-    if (!paragraphsRef.current.length) return;
+  if (!paragraphsRef.current.length) return;
 
-    // Clean up old triggers
-    scrollTriggersRef.current.forEach((t) => t && t.kill());
-    scrollTriggersRef.current = [];
+  scrollTriggersRef.current.forEach((t) => t && t.kill());
+  scrollTriggersRef.current = [];
 
-    const mm = gsap.matchMedia();
+  const mm = gsap.matchMedia();
 
-    mm.add(
-      {
-        isDesktop: "(min-width: 768px)",
-        isMobile: "(max-width: 767px)",
-      },
-      (context) => {
-        let { isDesktop, isMobile } = context.conditions;
+  mm.add(
+    {
+      isDesktop: "(min-width: 768px)",
+      isMobile: "(max-width: 767px)",
+    },
+    (context) => {
+      const { isDesktop, isMobile } = context.conditions;
 
-        paragraphsRef.current.forEach((section, i) => {
-          if (!section) return;
+      paragraphsRef.current.forEach((section, i) => {
+        if (!section) return;
 
-          // Pin the wrapper div around the text, not <p> itself
-          const textWrapper = section.querySelector(".text-wrapper");
-          const image = section.querySelector(".image");
+        const textWrapper = section.querySelector(".text-wrapper");
+        const image = section.querySelector(".image");
 
-          if (!textWrapper || !image) return;
+        if (!textWrapper || !image) return;
 
-          if (isDesktop) {
-            // Pin the text wrapper starting **after** hero pin ends (around 60% viewport)
-            const pinTrigger = ScrollTrigger.create({
+        if (isDesktop) {
+          const pinTrigger = ScrollTrigger.create({
+            trigger: section,
+            start: "top center",
+            end: "bottom center",
+            pin: textWrapper,
+            pinSpacing: true,
+            scrub: true,
+            anticipatePin: 1,
+            markers: false,
+            invalidateOnRefresh: true,
+          });
+
+          gsap.to(textWrapper, {
+            color: "#121212",
+            ease: "none",
+            scrollTrigger: {
               trigger: section,
-              start: "top 60%", // delayed start to avoid hero pin conflict
-              end: () => `bottom+=${textWrapper.offsetHeight} top`,
-              pin: textWrapper,
-              pinSpacing: true,
+              start: "top center",
+              end: "bottom center",
               scrub: true,
               markers: false,
-              anticipatePin: 1,
-            });
+            },
+          });
 
-            // Animate color fill on pinned text from gray to black
-            gsap.fromTo(
-              textWrapper,
-              { color: "#999999" },
-              {
-                color: "#121212",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 60%",
-                  end: () => `bottom+=${textWrapper.offsetHeight} top`,
-                  scrub: true,
-                },
-                ease: "none",
-              }
-            );
-
-            // Image slide/fade animation from opposite sides
-            gsap.fromTo(
-              image,
-              {
-                opacity: 0,
-                x: i % 2 === 0 ? 80 : -80,
+          gsap.fromTo(
+            image,
+            {
+              opacity: 0,
+              x: i % 2 === 0 ? 80 : -80,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 1.3,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                end: "top 50%",
+                toggleActions: "play none none reverse",
+                markers: false,
               },
-              {
-                opacity: 1,
-                x: 0,
-                duration: 1.3,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 80%",
-                  end: "top 50%",
-                  toggleActions: "play none none reverse",
-                  markers: false,
-                },
-              }
-            );
+            }
+          );
 
-            scrollTriggersRef.current.push(pinTrigger);
-          }
+          scrollTriggersRef.current.push(pinTrigger);
+        }
 
-          if (isMobile) {
-            gsap.set(textWrapper, { color: "#999999" });
+        if (isMobile) {
+          gsap.set(textWrapper, { color: "#999999" });
 
-            gsap.fromTo(
-              textWrapper,
-              { opacity: 0, y: 40 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 90%",
-                  toggleActions: "play none none reverse",
-                  markers: false,
-                },
-              }
-            );
+          gsap.fromTo(
+            textWrapper,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+                markers: false,
+              },
+            }
+          );
 
-            gsap.fromTo(
-              image,
-              { opacity: 0, y: 40 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                delay: 0.2,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 90%",
-                  toggleActions: "play none none reverse",
-                  markers: false,
-                },
-              }
-            );
-          }
-        });
-      }
-    );
+          gsap.fromTo(
+            image,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              delay: 0.2,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+                markers: false,
+              },
+            }
+          );
+        }
+      });
+    }
+  );
 
-    return () => {
-      mm.revert();
-      scrollTriggersRef.current.forEach((t) => t && t.kill());
-      scrollTriggersRef.current = [];
-    };
-  }, []);
-
+  return () => {
+    mm.revert();
+    scrollTriggersRef.current.forEach((t) => t && t.kill());
+    scrollTriggersRef.current = [];
+  };
+}, []);
   // Refresh ScrollTrigger on resize
   useEffect(() => {
     const onResize = () => {
@@ -297,12 +258,11 @@ const About = () => {
         ))}
       </div>
 
-      {/* Hero 3D video model */}
+      {/* 3D video model static, with mouse tilt only */}
       <div
         id="clip"
-        ref={clipRef}
         className="w-full flex justify-center items-center relative overflow-visible mt-40"
-        style={{ height: "120vh", zIndex: 10 }}
+        style={{ height: 600, zIndex: 10 }}
       >
         <div
           ref={starRef}
