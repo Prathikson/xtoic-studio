@@ -28,7 +28,7 @@ const socialLinks = [
   { href: "https://twitter.com", icon: <FaTwitter size={22} /> },
   { href: "https://youtube.com", icon: <FaYoutube size={22} /> },
   { href: "https://medium.com", icon: <FaMedium size={22} /> },
-  { href: "mailto:youremail@example.com", icon: <FaEnvelope size={22} /> },
+  { href: "mailto:prathiksonj@gmail.com", icon: <FaEnvelope size={22} /> },
 ];
 
 const getResponsiveFontSize = () => {
@@ -142,7 +142,7 @@ const Footer = () => {
                   href="mailto:youremail@example.com"
                   className="underline hover:text-zoroRed text-sm"
                 >
-                  youremail@example.com
+                  prathiksonj@gmail.com
                 </a>
               </div>
 

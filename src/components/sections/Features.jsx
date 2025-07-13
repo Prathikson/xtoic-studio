@@ -141,12 +141,12 @@ const Features = () => (
   <section className="bg-black pb-52">
     <div className="container mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
-        <p className="font-circular-web text-lg text-zoroRed">
-          Designs that slap. Code that flies. Interactions that make you go “woah“
-        </p>
-        <p className="max-w-md font-circular-web text-lg text-carbonBlack opacity-50">
-          At XTOIC Studio, we blend tech, art, and a bit of madness to build digital experiences that actually stand out.
-        </p>
+<p className="font-circular-web text-7xl font-semibold text-zoroRed">
+  Born to bend pixels. Wired for wonder. Known to leave jaws on the floor.
+</p>
+<p className="max-w-md font-circular-web text-xl text-carbonBlack opacity-80">
+  XTOIC Studio isn’t just building websites it’s crafting digital rituals. Every project? A mix of code, chaos, and pure creative fire.
+</p>
       </div>
 
       <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">

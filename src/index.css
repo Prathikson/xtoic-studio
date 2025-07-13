@@ -192,6 +192,21 @@ body {
   animation-delay: calc(var(--animation-order) * 0.1s);
 }
 
+
+@layer components {
+  .padding-x {
+    @apply px-5 md:px-10;
+  }
+
+  .padding-x-lg {
+    @apply px-5 md:px-20;
+  }
+
+  .section-padding {
+    @apply px-5 md:px-10 md:mt-40 mt-20;
+  }
+}
+
 @keyframes indicator-line {
   0% {
     height: 4px;

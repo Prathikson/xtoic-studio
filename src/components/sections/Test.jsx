@@ -39,22 +39,26 @@ const Test = () => {
       </div>
 
       {/* Fullscreen Logo Container */}
-      <div className="relative bg-carbonBlack rounded-2xl w-full h-[600px] sm:h-[700px] md:h-[800px] lg:h-[90vh] overflow-hidden">
-        {/* Top-left wording */}
-        <div className="absolute top-6 left-6 max-w-xs sm:max-w-sm e z-10">
-          <h3 className="font-semibold text-lg sm:text-xl md:text-4xl mb-2 text-zoroRed">Why Choose Us?</h3>
-          <p className="font-light text-sm sm:text-base leading-relaxed text-white">
-            Innovative design meets cutting-edge technology. We create solutions that empower your brand and captivate your audience.
-          </p>
-        </div>
+<div className="relative bg-carbonBlack rounded-2xl w-full h-[600px] sm:h-[700px] md:h-[800px] lg:h-[90vh] overflow-hidden">
+  {/* Top-left wording */}
+  <div className="absolute top-6 left-6 max-w-xs sm:max-w-sm z-10">
+    <h3 className="font-semibold text-lg sm:text-xl md:text-4xl mb-2 text-zoroRed">
+      Why XTOIC Exists
+    </h3>
+    <p className="font-light text-sm sm:text-base leading-relaxed text-white">
+      When the world begged for websites that *felt* again, XTOIC answered. It wasn’t built for trends it was built to break them.
+    </p>
+  </div>
 
-        {/* Bottom-right wording */}
-        <div className="absolute bottom-6 right-6 max-w-xs sm:max-w-sm text-right z-10">
-          <h3 className="font-semibold text-lg sm:text-xl md:text-4xl mb-2 text-zoroRed">Our Commitment</h3>
-          <p className="font-light text-xs sm:text-sm leading-relaxed text-lightGray">
-            Crafted with passion & precision to deliver outstanding digital experiences tailored to your needs.
-          </p>
-        </div>
+  {/* Bottom-right wording */}
+  <div className="absolute bottom-6 right-6 max-w-xs sm:max-w-sm text-right z-10">
+    <h3 className="font-semibold text-lg sm:text-xl md:text-4xl mb-2 text-zoroRed">
+      What It Lives For
+    </h3>
+    <p className="font-light text-xs sm:text-sm leading-relaxed text-lightGray">
+      Every line of code. Every scroll. Every spark. XTOIC crafts experiences not for today but for legends yet to be told.
+    </p>
+  </div>
 
         {/* LogoModel - Responsive */}
         <div className="absolute inset-0 flex items-center justify-center z-0">

@@ -11,20 +11,23 @@ gsap.registerPlugin(ScrollTrigger);
 const storyParagraphs = [
   {
     id: "p1",
-    text: `In the heart of innovation lies XTOIC Studio — a place where creativity meets technology in perfect harmony. Our journey began with a simple belief: that great web development is about storytelling, not just code.`,
+    text: `Once upon a digital dusk, XTOIC crawled out of the code not born, but summoned. A rogue force with too much imagination and zero chill, built to bend pixels to its will.`,
     img: "/img/entrance.webp",
   },
   {
     id: "p2",
-    text: `Each line of code we write is a stroke in the larger canvas of your brand's vision. We blend art and engineering to create digital experiences that captivate and convert.`,
+    text: `It doesn’t “design” it conjures. It doesn't “code” it crafts realities. XTOIC speaks fluent motion, breathes gradients, and lives off the energy of brands bold enough to let it roam free.`,
     img: "/img/contact-2.webp",
   },
   {
     id: "p3",
-    text: `Our team thrives on pushing boundaries — using cutting-edge tech to craft websites that feel alive, engaging, and effortlessly intuitive.`,
+    text: `Legends say it feeds on broken templates and flat UI and blesses those who crave something... *alive*. If you've felt the glitch in the grid, you’re already part of the story.`,
     img: "/img/contact-1.webp",
   },
 ];
+
+
+
 
 const About = () => {
   const starRef = useRef(null);

@@ -14,6 +14,7 @@ import Test from "./components/sections/Test";
 import Project from "./components/sections/Project";
 import About from "./components/sections/About";
 import ComparisonSection from "./components/sections/ComparisonSection";
+import ContactForm from "./components/sections/ContactForm";
 
 function App() {
   useLenis(); // 👈 Call Lenis smooth scroll hook
@@ -35,6 +36,7 @@ function App() {
         <Testimonials />
         <Pricing />
         <Contact />
+        <ContactForm/>
         <Footer />
         <CookieBanner />
         <CookieModal />

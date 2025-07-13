@@ -107,10 +107,10 @@ const FloatingImage = () => {
 
         <div className="-mt-80 flex w-full justify-center md:-mt-64 md:me-44 md:justify-end">
           <div className="flex h-full w-fit flex-col items-center md:items-start">
-            <p className="mt-3 max-w-sm text-center font-circular-web text-mattBlack md:text-start">
-              XTOIC Studio blends bold design with cutting-edge tech to craft unforgettable digital experiences.
-We don’t just build websites we create an experience, movement, and magic on every scroll.
-            </p>
+<p className="mt-3 max-w-sm text-center font-circular-web text-mattBlack md:text-start">
+  Somewhere beyond broken templates and forgotten scrolls, there lies a realm <span>XTOIC STUDIO</span> A place where design bends light, and code breathes life into pixels.  
+  Not just a website... a movement. A little magic stitched into every scroll.
+</p>
 
             <Button
               id="realm-btn"
