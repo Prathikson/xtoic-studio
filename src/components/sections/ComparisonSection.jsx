@@ -68,7 +68,7 @@ const ComparisonTable = () => {
       </div>
 
       {/* Desktop Table */}
-      <div className="hidden md:grid md:grid-cols-5 max-w-7xl mx-auto  overflow-hidden">
+      <div className="hidden md:grid md:grid-cols-5 max-w-full px-56  overflow-hidden">
         {/* Header Row */}
         <div className="p-6 bg-lightGray"></div>
         {columns.map((col) => (

@@ -48,32 +48,11 @@ const Testimonials = () => {
           />
         </div>
 
-      {/* Navigation Arrows */}
-      <div className="flex justify-center items-center mb-8 gap-4">
-        <motion.button
-          onClick={prevTestimonial}
-          className="p-3 rounded-full bg-carbonBlack shadow-md border border-gray-300 text-white transition-all duration-300"
-          whileHover={{ scale: 1.1, x: -2 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Previous Testimonial"
-        >
-          <ChevronLeft size={24} />
-        </motion.button>
 
-        <motion.button
-          onClick={nextTestimonial}
-          className="p-3 rounded-full bg-carbonBlack shadow-md border border-gray-300 text-white  transition-all duration-300"
-          whileHover={{ scale: 1.1, x: 2 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Next Testimonial"
-        >
-          <ChevronRight size={24} />
-        </motion.button>
-      </div>
 
       {/* Testimonial Card */}
       <motion.div
-        className="bg-carbonBlack text-lightGray w-[80dvw] rounded-2xl shadow-lg p-10 mb-12 relative overflow-hidden min-h-[800px] flex flex-col justify-center"
+        className="bg-carbonBlack text-lightGray w-[80dvw] rounded-2xl shadow-lg p-10 mb-12 relative overflow-hidden min-h-[200px] md:min-h-[600px] flex flex-col justify-center"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -164,6 +143,28 @@ const Testimonials = () => {
             )}
           </motion.button>
         ))}
+      </div>
+            {/* Navigation Arrows */}
+      <div className="flex justify-center items-center mt-20 mb-4 gap-4">
+        <motion.button
+          onClick={prevTestimonial}
+          className="p-3 rounded-full bg-carbonBlack shadow-md border border-gray-300 text-white transition-all duration-300"
+          whileHover={{ scale: 1.1, x: -2 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Previous Testimonial"
+        >
+          <ChevronLeft size={24} />
+        </motion.button>
+
+        <motion.button
+          onClick={nextTestimonial}
+          className="p-3 rounded-full bg-carbonBlack shadow-md border border-gray-300 text-white  transition-all duration-300"
+          whileHover={{ scale: 1.1, x: 2 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Next Testimonial"
+        >
+          <ChevronRight size={24} />
+        </motion.button>
       </div>
     </div>
   );
