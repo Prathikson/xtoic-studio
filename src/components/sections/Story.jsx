@@ -116,6 +116,7 @@ We don’t just build websites we create an experience, movement, and magic on e
               id="realm-btn"
               title="Let's talk"
               containerClass="mt-5"
+              href="#contact"
             />
           </div>
         </div>

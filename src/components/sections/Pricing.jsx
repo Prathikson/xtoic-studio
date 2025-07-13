@@ -94,6 +94,7 @@ const Pricing = () => {
                 <Button
                   title="Get Started"
                   containerClass={`font-semibold w-full group-hover:scale-105 transition-transform ${tier.button}`}
+                  href="#contact"
                 />
               </div>
             </div>

@@ -10,18 +10,29 @@ const Button = ({
   target,        // optional target for <a>
   onClick,       // optional click handler
 }) => {
+  const baseClasses = clsx(
+    "group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-zoroRed px-7 py-3 text-beige",
+    "inline-flex items-center justify-center", // added to both <a> and <button>
+    containerClass
+  );
+
   const commonProps = {
     id,
-    className: clsx(
-      "group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-zoroRed px-7 py-3 text-beige",
-      containerClass
-    ),
+    className: baseClasses,
     onClick,
   };
 
   if (href) {
     return (
-      <a {...commonProps} href={href} target={target}>
+      <a
+        {...commonProps}
+        href={href}
+        target={target}
+        rel={target === "_blank" ? "noopener noreferrer" : undefined}
+        // prevent underline on links
+        // make sure it behaves like a button with flexbox
+        className={clsx(baseClasses, "no-underline")}
+      >
         {leftIcon}
         <span className="relative inline-flex overflow-hidden font-general text-xs uppercase">
           <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12">
@@ -36,9 +47,8 @@ const Button = ({
     );
   }
 
-  // Default to button
   return (
-    <button {...commonProps} type="button">
+    <button {...commonProps} type="button" className={baseClasses}>
       {leftIcon}
       <span className="relative inline-flex overflow-hidden font-general text-xs uppercase">
         <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12">

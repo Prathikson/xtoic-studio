@@ -100,7 +100,7 @@ const SolutionsCards = ({ solutions = [] }) => {
       <AnimatePresence>
         {active && (
           <motion.div
-            className="fixed inset-0 bg-white text-black z-50 overflow-auto"
+            className="fixed inset-0 bg-lightGray text-black z-50 overflow-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -108,7 +108,7 @@ const SolutionsCards = ({ solutions = [] }) => {
             <div className="p-6 md:p-12 max-w-6xl mx-auto relative">
               <button
                 onClick={() => setActive(null)}
-                className="absolute top-5 right-5 bg-gray-100 hover:bg-gray-200 p-2 rounded-full z-10"
+                className="absolute top-5 right-5 bg-mattBlack text-white hover:bg-carbonBlack p-2 rounded-full z-10"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -126,9 +126,9 @@ const SolutionsCards = ({ solutions = [] }) => {
                     href={active.websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-black text-white px-5 py-2 rounded-md font-medium text-sm hover:bg-neutral-900"
+                    className="bg-black text-white bg-mattBlack px-5 py-2 rounded-lg mt-10 font-medium text-sm hover:bg-zoroRed transition-colors"
                   >
-                    Learn more
+                    Visit Live Website
                   </a>
                 </div>
                 <img

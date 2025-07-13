@@ -1,26 +1,31 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
-// Tilt effect wrapper
+const isTouchDevice = () =>
+  typeof window !== "undefined" &&
+  ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+
+// Tilt effect wrapper - only active on non-touch devices
 export const BentoTilt = ({ children, className = "" }) => {
   const [transformStyle, setTransformStyle] = useState("");
   const itemRef = useRef(null);
 
+  // Only attach tilt handlers on desktop (no touch)
   const handleMouseMove = (event) => {
+    if (isTouchDevice()) return;
     if (!itemRef.current) return;
-    const { left, top, width, height } = itemRef.current.getBoundingClientRect();
 
+    const { left, top, width, height } = itemRef.current.getBoundingClientRect();
     const relativeX = (event.clientX - left) / width;
     const relativeY = (event.clientY - top) / height;
-
     const tiltX = (relativeY - 0.5) * 5;
     const tiltY = (relativeX - 0.5) * -5;
-
     const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(0.95, 0.95, 0.95)`;
     setTransformStyle(newTransform);
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice()) return;
     setTransformStyle("");
   };
 
@@ -42,6 +47,26 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [hoverOpacity, setHoverOpacity] = useState(0);
   const hoverButtonRef = useRef(null);
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(isTouchDevice());
+  }, []);
+
+  // Video click handler for mobile to toggle play/pause
+  const handleVideoClick = () => {
+    if (!videoRef.current) return;
+
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
 
   const handleMouseMove = (event) => {
     if (!hoverButtonRef.current) return;
@@ -59,12 +84,26 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
   return (
     <div id="features" className="relative size-full">
       <video
+        ref={videoRef}
         src={src}
         loop
         muted
-        autoPlay
+        autoPlay={!isMobile}
+        controls={isMobile}
+        playsInline
         className="absolute left-0 top-0 size-full object-cover object-center"
+        onClick={isMobile ? handleVideoClick : undefined}
+        style={{ pointerEvents: isMobile ? "auto" : "none" }}
       />
+      {isMobile && !isPlaying && (
+        <button
+          onClick={handleVideoClick}
+          className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black bg-opacity-60 px-6 py-3 text-white"
+          aria-label="Play video"
+        >
+          ▶ Play
+        </button>
+      )}
       <div className="relative z-10 flex size-full flex-col justify-between p-5 text-lightGray">
         <div>
           <h1 className="bento-title special-font">{title}</h1>
@@ -180,8 +219,19 @@ const Features = () => (
             src="videos/feature-5.mp4"
             loop
             muted
-            autoPlay
+            autoPlay={!isTouchDevice()}
+            controls={isTouchDevice()}
+            playsInline
             className="size-full object-cover object-center"
+            style={{ pointerEvents: isTouchDevice() ? "auto" : "none" }}
+            onClick={isTouchDevice() ? (e) => {
+              const vid = e.currentTarget;
+              if (vid.paused) {
+                vid.play();
+              } else {
+                vid.pause();
+              }
+            } : undefined}
           />
         </BentoTilt>
       </div>
