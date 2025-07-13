@@ -13,10 +13,10 @@ const HeroTriangle = ({
 
   useEffect(() => {
     const lenis = new Lenis();
-    function raf(time) {
+    const raf = (time) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
-    }
+    };
     requestAnimationFrame(raf);
     return () => lenis.destroy();
   }, []);
@@ -52,9 +52,10 @@ const HeroTriangle = ({
   return (
     <section
       ref={sectionRef}
-      className="relative w-full max-w-[600px] aspect-square flex items-center justify-center mx-auto"
+      className="relative w-full flex items-center justify-center mx-auto aspect-square"
       style={{
         maxWidth: sizeValue,
+        width: "100%",
       }}
     >
       <div
@@ -67,7 +68,7 @@ const HeroTriangle = ({
           className="absolute top-0 left-0 w-full h-full"
         >
           <defs>
-            <clipPath id="starShapeClip" clipPathUnits="userSpaceOnUse">
+            <clipPath id="starShapeClip">
               <path d="M 12.898438 296.613281 L 76.015625 187.484375 L 12.898438 78.355469 L 79.902344 78.355469 L 143.023438 187.484375 L 79.902344 296.613281 Z" />
               <path d="M 362.023438 78.355469 L 298.902344 187.484375 L 362.023438 296.613281 L 295.015625 296.613281 L 231.898438 187.484375 L 295.015625 78.355469 Z" />
               <path d="M 296.589844 362.046875 L 187.460938 298.925781 L 78.332031 362.046875 L 78.332031 295.039062 L 187.460938 231.921875 L 296.589844 295.039062 Z" />
@@ -76,22 +77,18 @@ const HeroTriangle = ({
           </defs>
 
           {videoSrc ? (
-            <foreignObject
-              x="0"
-              y="0"
-              width="375"
-              height="375"
-              clipPath="url(#starShapeClip)"
-            >
-              <video
-                src={videoSrc}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
-            </foreignObject>
+            <g clipPath="url(#starShapeClip)">
+              <foreignObject x="0" y="0" width="375" height="375">
+                <video
+                  src={videoSrc}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </foreignObject>
+            </g>
           ) : (
             <rect
               width="375"
