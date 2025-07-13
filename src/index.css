@@ -10,6 +10,28 @@ html, body {
   scroll-behavior: smooth;
 }
 
+.indicator-line {
+  width: 3px;
+  height: 12px;
+  background-color: red;
+  margin: 0 1px;
+  animation: pulse 1s infinite ease-in-out;
+  opacity: 0.4;
+}
+
+.indicator-line.active {
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.6); }
+}
+
+.nav-hover-btn {
+  position: relative;
+  transition: color 0.3s ease;
+}
 
 
 body {
@@ -49,6 +71,11 @@ body {
 ::selection {
   background-color: #fffef0; /* Avocado green */
   color: #de0f3f; /* Frozen black */
+}
+
+.pin-wrapper {
+  width: 100%;
+  position: relative;
 }
 
 @layer utilities {

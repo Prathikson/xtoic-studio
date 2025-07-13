@@ -36,7 +36,7 @@ const Testimonials = () => {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <div className="w-full px-4 sm:px-6 md:px-10 lg:px-12 flex flex-col items-center justify-center py-10 overflow-hidden bg-lightGray">
+    <div id='testimonials' className="w-full px-4 sm:px-6 md:px-10 lg:px-12 flex flex-col items-center justify-center py-10 overflow-hidden bg-lightGray">
         <div className="mb-20 text-center">
           <p className="mb-4 font-general text-xs uppercase tracking-widest text-mattBlack">
             What Our Clients Say?

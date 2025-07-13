@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
 export const BentoTilt = ({ children, className = "" }) => {
@@ -8,8 +8,7 @@ export const BentoTilt = ({ children, className = "" }) => {
   const handleMouseMove = (event) => {
     if (!itemRef.current) return;
 
-    const { left, top, width, height } =
-      itemRef.current.getBoundingClientRect();
+    const { left, top, width, height } = itemRef.current.getBoundingClientRect();
 
     const relativeX = (event.clientX - left) / width;
     const relativeY = (event.clientY - top) / height;
@@ -43,6 +42,15 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
   const [hoverOpacity, setHoverOpacity] = useState(0);
   const hoverButtonRef = useRef(null);
 
+  const videoRef = useRef(null);
+  const containerRef = useRef(null);
+  const [shouldPlay, setShouldPlay] = useState(false);
+
+  // Detect if device is mobile (to disable autoplay on mobile)
+  const isMobile =
+    typeof window !== "undefined" &&
+    window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
   const handleMouseMove = (event) => {
     if (!hoverButtonRef.current) return;
     const rect = hoverButtonRef.current.getBoundingClientRect();
@@ -56,20 +64,56 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
   const handleMouseEnter = () => setHoverOpacity(1);
   const handleMouseLeave = () => setHoverOpacity(0);
 
+  // Lazy play video only on desktop
+  useEffect(() => {
+    if (isMobile) {
+      if (videoRef.current) videoRef.current.pause();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShouldPlay(entry.isIntersecting);
+      },
+      { threshold: 0.4 }
+    );
+
+    if (containerRef.current) observer.observe(containerRef.current);
+
+    return () => {
+      if (containerRef.current) observer.unobserve(containerRef.current);
+    };
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (shouldPlay) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [shouldPlay]);
+
   return (
-    <div id="features" className="relative size-full">
+    <div
+      id="features"
+      ref={containerRef}
+      className="relative w-full h-full overflow-hidden rounded-md"
+    >
       <video
+        ref={videoRef}
         src={src}
         loop
         muted
-        autoPlay
-        className="absolute left-0 top-0 size-full object-cover object-center"
+        playsInline
+        autoPlay={!isMobile}
+        className="absolute left-0 top-0 w-full h-full object-cover object-center"
       />
-      <div className="relative z-10 flex size-full flex-col justify-between p-5 text-lightGray">
+      <div className="relative z-10 flex flex-col justify-between h-full p-5 text-lightGray bg-black bg-opacity-50">
         <div>
           <h1 className="bento-title special-font">{title}</h1>
           {description && (
-            <p className="mt-3 max-w-64 text-xs md:text-base">{description}</p>
+            <p className="mt-3 max-w-full text-xs md:text-base">{description}</p>
           )}
         </div>
 
@@ -81,7 +125,6 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
             onMouseLeave={handleMouseLeave}
             className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-black px-5 py-2 text-xs uppercase text-white/70"
           >
-            {/* Radial gradient hover effect */}
             <div
               className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
               style={{
@@ -110,7 +153,7 @@ const Features = () => (
         </p>
       </div>
 
-      <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
+      <BentoTilt className="border-hsla relative mb-7 h-64 w-full overflow-hidden rounded-md md:h-[65vh]">
         <BentoCard
           src="videos/feature-1.mp4"
           title={
@@ -123,7 +166,8 @@ const Features = () => (
         />
       </BentoTilt>
 
-      <div className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7">
+      {/* Grid: 1 col on mobile, 2 cols on md+, auto rows */}
+      <div className="grid grid-cols-1 gap-7 md:grid-cols-2 md:grid-rows-3 md:h-[135vh] w-full">
         <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
           <BentoCard
             src="videos/feature-2.mp4"
@@ -137,7 +181,7 @@ const Features = () => (
           />
         </BentoTilt>
 
-        <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
+        <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1">
           <BentoCard
             src="videos/feature-3.mp4"
             title={
@@ -150,7 +194,7 @@ const Features = () => (
           />
         </BentoTilt>
 
-        <BentoTilt className="bento-tilt_1 me-14 md:col-span-1 md:me-0">
+        <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1">
           <BentoCard
             src="videos/feature-4.mp4"
             title={
@@ -164,11 +208,13 @@ const Features = () => (
         </BentoTilt>
 
         <BentoTilt className="bento-tilt_2">
-          <div className="flex size-full flex-col justify-between bg-carbonBlack p-5">
+          <div className="flex flex-col justify-between bg-carbonBlack p-5 h-full">
             <h1 className="bento-title special-font max-w-96 text-beige">
               S<b>E</b>O S<b>or</b>ce<b>ry🧙‍♂️</b>
             </h1>
-            <p className="text-beige">We don’t just build sites, we conjure traffic. Our SEO spells put you right where the world can find you — front and center.</p>
+            <p className="text-beige">
+              We don’t just build sites, we conjure traffic. Our SEO spells put you right where the world can find you — front and center.
+            </p>
 
             <TiLocationArrow className="m-5 scale-[5] self-end fill-beige" />
           </div>
@@ -179,8 +225,8 @@ const Features = () => (
             src="videos/feature-5.mp4"
             loop
             muted
-            autoPlay
-            className="size-full object-cover object-center"
+            autoPlay={false} // autoplay disabled on mobile by BentoCard logic
+            className="w-full h-full object-cover object-center"
           />
         </BentoTilt>
       </div>
