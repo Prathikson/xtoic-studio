@@ -1,3 +1,4 @@
+import useLenis from "./hooks/useLenis"; // 👈 Add this line
 import CookieProviderWrapper from "./components/CookieConsent/CookieProviderWrapper";
 import CookieBanner from "./components/CookieConsent/CookieBanner";
 import CookieModal from "./components/CookieConsent/CookieModal";
@@ -12,23 +13,28 @@ import Testimonials from "./components/sections/Testimonials";
 import Test from "./components/sections/Test";
 import Project from "./components/sections/Project";
 import About from "./components/sections/About";
-
-
+import ComparisonSection from "./components/sections/ComparisonSection";
 
 function App() {
+  useLenis(); // 👈 Call Lenis smooth scroll hook
+
   return (
     <CookieProviderWrapper>
-      <main className="relative min-h-screen w-screen overflow-x-hidden antialiased">
+      <main
+        data-lenis
+        className="relative min-h-screen w-screen overflow-x-hidden antialiased"
+      >
         <NavBar />
         <Hero />
-        <About/>
+        <About />
         <Featutres />
-        <Test/>
-        <Project/>
+        <Test />
+        <Project />
         <Story />
-        <Testimonials/>
-        <Pricing/>
-        <Contact/>
+        <ComparisonSection />
+        <Testimonials />
+        <Pricing />
+        <Contact />
         <Footer />
         <CookieBanner />
         <CookieModal />

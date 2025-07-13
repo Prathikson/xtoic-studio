@@ -39,18 +39,18 @@ const Test = () => {
       </div>
 
       {/* Fullscreen Logo Container */}
-      <div className="relative bg-[#121212] rounded-2xl shadow-xl w-full h-[600px] sm:h-[700px] md:h-[800px] lg:h-[90vh] overflow-hidden">
+      <div className="relative bg-carbonBlack rounded-2xl w-full h-[600px] sm:h-[700px] md:h-[800px] lg:h-[90vh] overflow-hidden">
         {/* Top-left wording */}
         <div className="absolute top-6 left-6 max-w-xs sm:max-w-sm e z-10">
-          <h3 className="font-bold text-lg sm:text-xl md:text-2xl mb-2 text-zoroRed">Why choose us?</h3>
+          <h3 className="font-semibold text-lg sm:text-xl md:text-4xl mb-2 text-zoroRed">Why Choose Us?</h3>
           <p className="font-light text-sm sm:text-base leading-relaxed text-white">
             Innovative design meets cutting-edge technology. We create solutions that empower your brand and captivate your audience.
           </p>
         </div>
 
         {/* Bottom-right wording */}
-        <div className="absolute bottom-6 right-6 max-w-xs sm:max-w-sm text-right italic z-10">
-          <h3 className="font-semibold text-base sm:text-lg mb-1 text-zoroRed">Our Commitment</h3>
+        <div className="absolute bottom-6 right-6 max-w-xs sm:max-w-sm text-right z-10">
+          <h3 className="font-semibold text-lg sm:text-xl md:text-4xl mb-2 text-zoroRed">Our Commitment</h3>
           <p className="font-light text-xs sm:text-sm leading-relaxed text-lightGray">
             Crafted with passion & precision to deliver outstanding digital experiences tailored to your needs.
           </p>

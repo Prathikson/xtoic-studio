@@ -54,7 +54,7 @@ const Project = () => {
           className="special-font !text-4xl md:!text-6xl font-zentry font-black leading-[1]"
             textColor="text-mattBlack"
         />
-        <p className="text-lightGray text-sm sm:text-base max-w-2xl mt-2">
+        <p className="text-mattBlack text-sm sm:text-base max-w-2xl mt-2">
           From creative portfolios to dynamic landing pages, we fuse design with development to create powerful brand-driven experiences.
         </p>
       </div>
