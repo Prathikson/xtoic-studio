@@ -2,35 +2,35 @@ import CookieProviderWrapper from "./components/CookieConsent/CookieProviderWrap
 import CookieBanner from "./components/CookieConsent/CookieBanner";
 import CookieModal from "./components/CookieConsent/CookieModal";
 import NavBar from "./components/layout/Navbar";
-// import Hero from "./components/sections/Hero";
+import Hero from "./components/sections/Hero";
 import Featutres from "./components/sections/Features";
 import Story from "./components/sections/Story";
 import Pricing from "./components/sections/Pricing";
 import Contact from "./components/sections/Contact";
-import Footer from "./components/layout/Footer";
+// import Footer from "./components/layout/Footer";
 import Testimonials from "./components/sections/Testimonials";
-import Test from "./components/sections/Test";
+// import Test from "./components/sections/Test";
 import Project from "./components/sections/Project";
-// import About from "./components/sections/About";
+import About from "./components/sections/About";
 import ComparisonSection from "./components/sections/ComparisonSection";
 import ContactForm from "./components/sections/ContactForm";
 
-// import useLenis from "./hooks/useLenis";
+import useLenis from "./hooks/useLenis";
 
 function App() {
-  // useLenis();  // Commented out to disable Lenis
+  useLenis();
 
   return (
     <CookieProviderWrapper>
       <main
-        // data-lenis
+        data-lenis
         className="relative min-h-screen w-screen overflow-x-hidden antialiased"
       >
         <NavBar />
-        {/* <Hero />
-        <About /> */}
+        <Hero />
+        <About />
         <Featutres />
-        <Test />
+        {/* <Test /> */}
         <Project />
         <Story />
         <ComparisonSection />
@@ -38,7 +38,7 @@ function App() {
         <Pricing />
         <Contact />
         <ContactForm/>
-        <Footer />
+        {/* <Footer /> */}
         <CookieBanner />
         <CookieModal />
       </main>
