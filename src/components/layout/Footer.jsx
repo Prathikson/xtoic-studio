@@ -84,9 +84,9 @@ const Footer = () => {
         {/* Layout */}
         <div className="max-w-screen-xl mx-auto flex flex-col gap-16">
           {/* Logo */}
-          <div className="flex justify-center lg:justify-start">
+          {/* <div className="flex justify-center lg:justify-start"> */}
             {/* <div className="w-40 h-16 bg-mattBlack rounded-lg" /> */}
-            <LogoModel
+            {/* <LogoModel
               logoPath="/logox.svg"
               logoSize={100}
               logoFillColor="#de0f3f"
@@ -95,7 +95,7 @@ const Footer = () => {
               forceStrength={0.5}
               returnForce={0.15}
             />
-          </div>
+          </div> */}
 
           {/* Mobile-friendly stack */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-center sm:text-left">
