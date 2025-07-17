@@ -171,7 +171,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom TextModel */}
-        <div className="w-full mt-20 pb-16 flex justify-center items-center overflow-hidden">
+        {/* <div className="w-full mt-20 pb-16 flex justify-center items-center overflow-hidden">
           <div className="w-full max-w-[1600px] h-[280px] sm:h-[320px] md:h-[400px] lg:h-[440px]">
             <TextModel
               text="XTOIC"
@@ -182,7 +182,7 @@ const Footer = () => {
               returnForce={0.18}
             />
           </div>
-        </div>
+        </div> */}
       </footer>
 
       {showTermsModal && <TermsModal onClose={() => setShowTermsModal(false)} />}
