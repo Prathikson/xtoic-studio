@@ -1,4 +1,3 @@
-import useLenis from "./hooks/useLenis";
 import CookieProviderWrapper from "./components/CookieConsent/CookieProviderWrapper";
 import CookieBanner from "./components/CookieConsent/CookieBanner";
 import CookieModal from "./components/CookieConsent/CookieModal";
@@ -16,13 +15,15 @@ import Project from "./components/sections/Project";
 import ComparisonSection from "./components/sections/ComparisonSection";
 import ContactForm from "./components/sections/ContactForm";
 
+// import useLenis from "./hooks/useLenis";
+
 function App() {
-  useLenis(); 
+  // useLenis();  // Commented out to disable Lenis
 
   return (
     <CookieProviderWrapper>
       <main
-        data-lenis
+        // data-lenis
         className="relative min-h-screen w-screen overflow-x-hidden antialiased"
       >
         <NavBar />
