@@ -4,10 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html, body, #root {
+  overflow-x: hidden;
+  font-family: "General Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+  scroll-behavior: auto; /* disable native smooth scroll */
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
 .indicator-line {
