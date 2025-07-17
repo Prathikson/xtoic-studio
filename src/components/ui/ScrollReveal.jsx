@@ -10,7 +10,7 @@ const ScrollReveal = ({
   reverse = false,
   initialTextColor = "#666666",
   revealTextColor = "#000000",
-  wordRevealRatio = 1, // How many words to reveal per scroll progress unit (1 = all words by full scroll)
+  wordRevealRatio = 1,
   backgroundColor = "transparent",
 }) => {
   const containerRef = useRef(null);
@@ -55,13 +55,14 @@ const ScrollReveal = ({
 
     // Create a timeline synced with scroll
     const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top center",
-        end: "bottom center",
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
+scrollTrigger: {
+  trigger: section,
+  start: "top center",
+  end: "bottom center",
+  scrub: true,
+  scroller: document.body, // ✅ needed when using Lenis
+},
+
     });
 
     tl.to(words, {
@@ -69,10 +70,10 @@ const ScrollReveal = ({
       color: revealTextColor,
       opacity: 1,
       ease: "none",
-      stagger: {
-        each: 0.05,
-        from: "start",
-      },
+stagger: {
+  each: 0.05 / wordRevealRatio, // More ratio = faster reveal
+  from: "start",
+},
     });
 
     // Smooth image animation synced with scroll too

@@ -141,7 +141,7 @@ const Features = () => (
   <section className="bg-black pb-52">
     <div className="container mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
-<p className="font-circular-web text-7xl font-semibold text-zoroRed">
+<p className="font-circular-web text-3xl font-semibold text-zoroRed">
   Born to bend pixels. Wired for wonder. Known to leave jaws on the floor.
 </p>
 <p className="max-w-md font-circular-web text-xl text-carbonBlack opacity-80">
