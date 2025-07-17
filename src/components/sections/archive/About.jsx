@@ -126,14 +126,11 @@ const About = () => {
             });
 
             // Create the main pin animation
-            const pinTrigger = ScrollTrigger.create({
+const pinTrigger = ScrollTrigger.create({
   trigger: section,
-  start: "center center", // ⬅️ this is the key fix
-  end: "bottom+=200% center",
-  pin: true,
-  pinSpacing: true,
-  anticipatePin: 1,
-  invalidateOnRefresh: true,
+  start: "top 70%",
+  end: "bottom center",
+  scrub: 0.5, // smoother animation instead of full pin
   onUpdate: (self) => {
     const progress = self.progress;
 
