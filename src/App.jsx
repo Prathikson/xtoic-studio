@@ -12,7 +12,7 @@ import Footer from "./components/layout/Footer";
 import Testimonials from "./components/sections/Testimonials";
 import Test from "./components/sections/Test";
 import Project from "./components/sections/Project";
-import About from "./components/sections/About";
+// import About from "./components/sections/About";
 import ComparisonSection from "./components/sections/ComparisonSection";
 import ContactForm from "./components/sections/ContactForm";
 
@@ -26,8 +26,8 @@ function App() {
         className="relative min-h-screen w-screen overflow-x-hidden antialiased"
       >
         <NavBar />
-        {/* <Hero /> */}
-        <About />
+        {/* <Hero />
+        <About /> */}
         <Featutres />
         <Test />
         <Project />
