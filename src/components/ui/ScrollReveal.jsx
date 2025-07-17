@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +15,6 @@ const ScrollReveal = ({
 }) => {
   const containerRef = useRef(null);
 
-  // Wrap words in spans for animation
   const wrapWords = (txt) =>
     txt
       .split(" ")
@@ -36,47 +35,43 @@ const ScrollReveal = ({
 
     const words = textElement.querySelectorAll(".word");
 
-    // Reset styles for text and image
     gsap.set(words, {
       color: initialTextColor,
       opacity: 0.4,
       display: "inline-block",
       marginRight: "0.25em",
+      userSelect: "none",
+      transition: "color 0.3s ease, opacity 0.3s ease",
     });
+
     gsap.set(image, {
       y: 150,
       opacity: 0.3,
     });
 
-    // Clear old ScrollTriggers on this container if any
     ScrollTrigger.getAll().forEach((st) => {
       if (st.trigger === section) st.kill();
     });
 
-    // Create a timeline synced with scroll
     const tl = gsap.timeline({
-scrollTrigger: {
-  trigger: section,
-  start: "top center",
-  end: "bottom center",
-  scrub: true,
-  scroller: document.body, // ✅ needed when using Lenis
-},
-
+      scrollTrigger: {
+        trigger: section,
+        start: "top center",
+        end: "bottom center",
+        scrub: true,
+      },
     });
 
     tl.to(words, {
-      duration: 1,
       color: revealTextColor,
       opacity: 1,
       ease: "none",
-stagger: {
-  each: 0.05 / wordRevealRatio, // More ratio = faster reveal
-  from: "start",
-},
+      stagger: {
+        each: 0.05 / wordRevealRatio,
+        from: "start",
+      },
     });
 
-    // Smooth image animation synced with scroll too
     tl.to(
       image,
       {
@@ -84,14 +79,14 @@ stagger: {
         opacity: 1,
         ease: "power3.out",
       },
-      0 // same start time as text animation
+      0
     );
 
     return () => {
       if (tl.scrollTrigger) tl.scrollTrigger.kill();
       tl.kill();
     };
-  }, [text, imageSrc, initialTextColor, revealTextColor]);
+  }, [text, imageSrc, initialTextColor, revealTextColor, wordRevealRatio]);
 
   return (
     <article
@@ -102,7 +97,10 @@ stagger: {
       style={{ backgroundColor }}
     >
       <div className="text-wrapper md:w-1/2 z-10">
-        <p className="text-content text-2xl md:text-4xl lg:text-5xl leading-relaxed font-medium" />
+        <p
+          className="text-content text-2xl md:text-4xl lg:text-5xl leading-relaxed font-medium"
+          // note: .word spans get style from GSAP inline styles
+        />
       </div>
 
       <div className="md:w-1/2 w-full relative">
@@ -114,13 +112,6 @@ stagger: {
           draggable={false}
         />
       </div>
-
-      <style jsx>{`
-        .word {
-          transition: color 0.3s ease, opacity 0.3s ease;
-          user-select: none;
-        }
-      `}</style>
     </article>
   );
 };

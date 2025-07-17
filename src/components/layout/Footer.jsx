@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import TextModel from "../models/TextModel";
 import TermsModal from "../models/TermsModal";
 import { useCookieConsentContext } from "../CookieConsent/CookieProviderWrapper";
 import {
@@ -11,7 +10,6 @@ import {
   FaMedium,
   FaEnvelope,
 } from "react-icons/fa";
-import LogoModel from "../models/LogoModel/LogoModel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,26 +29,10 @@ const socialLinks = [
   { href: "mailto:prathiksonj@gmail.com", icon: <FaEnvelope size={22} /> },
 ];
 
-const getResponsiveFontSize = () => {
-  const width = typeof window !== "undefined" ? window.innerWidth : 1280;
-  if (width >= 1280) return 520;
-  if (width >= 1024) return 400;
-  if (width >= 640) return 220;
-  return 220;
-};
-
 const Footer = () => {
   const [showTermsModal, setShowTermsModal] = useState(false);
   const { setShowModal: setCookieModalVisible } = useCookieConsentContext();
-  const [fontSize, setFontSize] = useState(getResponsiveFontSize());
   const footerRef = useRef(null);
-
-  useEffect(() => {
-    const updateFontSize = () => setFontSize(getResponsiveFontSize());
-    updateFontSize();
-    window.addEventListener("resize", updateFontSize);
-    return () => window.removeEventListener("resize", updateFontSize);
-  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -81,25 +63,10 @@ const Footer = () => {
         ref={footerRef}
         className="bg-carbonBlack text-lightGray w-full select-none pt-20 px-6 sm:px-10 lg:px-24"
       >
-        {/* Layout */}
         <div className="max-w-screen-xl mx-auto flex flex-col gap-16">
-          {/* Logo */}
-          {/* <div className="flex justify-center lg:justify-start"> */}
-            {/* <div className="w-40 h-16 bg-mattBlack rounded-lg" /> */}
-            {/* <LogoModel
-              logoPath="/logox.svg"
-              logoSize={100}
-              logoFillColor="#de0f3f"
-              particleColor={[0, 0, 0, 1]}
-              distortionRadius={20}
-              forceStrength={0.5}
-              returnForce={0.15}
-            />
-          </div> */}
-
-          {/* Mobile-friendly stack */}
+          {/* Footer Links and Content */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-center sm:text-left">
-            {/* Nav Links */}
+            {/* Navigation */}
             <div className="space-y-3">
               <h4 className="text-lg font-semibold">Navigation</h4>
               <ul className="space-y-1 text-sm">
@@ -116,7 +83,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Socials */}
+            {/* Social Icons */}
             <div className="space-y-3">
               <h4 className="text-lg font-semibold">Follow Us</h4>
               <div className="flex justify-center sm:justify-start flex-wrap gap-4">
@@ -139,7 +106,7 @@ const Footer = () => {
               <div>
                 <h4 className="text-lg font-semibold">Contact</h4>
                 <a
-                  href="mailto:youremail@example.com"
+                  href="mailto:prathiksonj@gmail.com"
                   className="underline hover:text-zoroRed text-sm"
                 >
                   prathiksonj@gmail.com
@@ -169,22 +136,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Bottom TextModel */}
-        {/* <div className="w-full mt-20 pb-16 flex justify-center items-center overflow-hidden">
-          <div className="w-full max-w-[1600px] h-[280px] sm:h-[320px] md:h-[400px] lg:h-[440px]">
-            <TextModel
-              text="XTOIC"
-              fontSize={fontSize}
-              textColor="#f1f1f1"
-              distortionRadius={80}
-              forceStrength={0.45}
-              returnForce={0.18}
-            />
-          </div>
-        </div> */}
       </footer>
 
+      {/* Modal */}
       {showTermsModal && <TermsModal onClose={() => setShowTermsModal(false)} />}
     </>
   );

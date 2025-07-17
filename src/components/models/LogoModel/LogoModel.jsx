@@ -1,4 +1,3 @@
-// File: components/LogoModel.jsx
 import React, { useRef, useEffect } from "react";
 import vertexShaderSrc from "../shaders/vertex.glsl";
 import fragmentShaderSrc from "../shaders/fragment.glsl";
@@ -23,14 +22,6 @@ function hexToRgb(hex) {
     : { r: 1, g: 1, b: 1 };
 }
 
-// Simple heuristic for weak devices: less than 4 logical cores
-function isLowEndDevice() {
-  if (typeof navigator !== "undefined" && navigator.hardwareConcurrency) {
-    return navigator.hardwareConcurrency < 4;
-  }
-  return false;
-}
-
 const LogoModel = ({
   logoPath = defaultConfig.logoPath,
   logoSize = defaultConfig.logoSize,
@@ -42,25 +33,14 @@ const LogoModel = ({
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const mouse = useRef({ x: 0, y: 0 });
-  let positions = [];
-  let originalPositions = [];
-  let velocities = [];
+  let positions = [], originalPositions = [], velocities = [];
 
   useEffect(() => {
-    const lowEnd = isLowEndDevice();
-
-    // Adjust config for low-end devices
-    const samplingStep = lowEnd ? 8 : 4; // bigger step = fewer particles
-    const adjustedDistortionRadius = lowEnd ? distortionRadius * 0.6 : distortionRadius;
-    const adjustedForceStrength = lowEnd ? forceStrength * 0.6 : forceStrength;
-    const adjustedReturnForce = lowEnd ? returnForce * 0.6 : returnForce;
-    const targetFPS = lowEnd ? 30 : 60;
-
     const canvas = canvasRef.current;
     const gl = canvas.getContext("webgl", {
       alpha: true,
-      antialias: !lowEnd, // disable antialias on weak devices
-      powerPreference: lowEnd ? "low-power" : "high-performance",
+      antialias: true,
+      powerPreference: "high-performance",
       premultipliedAlpha: false,
     });
     if (!gl) {
@@ -87,7 +67,7 @@ const LogoModel = ({
     }
 
     gl.useProgram(program);
-    gl.clearColor(0, 0, 0, 0);
+    gl.clearColor(0, 0, 0, 0); // Transparent background
 
     const positionLocation = gl.getAttribLocation(program, "a_position");
     const colorLocation = gl.getAttribLocation(program, "a_color");
@@ -106,7 +86,7 @@ const LogoModel = ({
       tempCanvas.height = logoSize;
       const ctx = tempCanvas.getContext("2d");
       ctx.fillStyle = logoColor;
-      ctx.fillRect(0, 0, logoSize, logoSize);
+      ctx.fillRect(0, 0, logoSize, logoSize); // Fill background to match logoColor
       ctx.globalCompositeOperation = "destination-in";
       ctx.drawImage(image, 0, 0, logoSize, logoSize);
 
@@ -116,12 +96,8 @@ const LogoModel = ({
       const canvasCenterX = canvas.width / 2 - logoSize / 2;
       const canvasCenterY = canvas.height / 2 - logoSize / 2;
 
-      positions = [];
-      originalPositions = [];
-      velocities = [];
-
-      for (let y = 0; y < logoSize; y += samplingStep) {
-        for (let x = 0; x < logoSize; x += samplingStep) {
+      for (let y = 0; y < logoSize; y++) {
+        for (let x = 0; x < logoSize; x++) {
           const index = (y * logoSize + x) * 4;
           const alpha = pixels[index + 3];
           if (alpha > 128) {
@@ -134,9 +110,7 @@ const LogoModel = ({
         }
       }
 
-      const colors = new Float32Array(
-        new Array(positions.length / 2).fill().flatMap(() => [rgb.r, rgb.g, rgb.b, 1])
-      );
+      const colors = new Float32Array(new Array(positions.length / 2).fill().flatMap(() => [rgb.r, rgb.g, rgb.b, 1]));
 
       gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
       gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
@@ -146,24 +120,18 @@ const LogoModel = ({
 
       gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
 
-      let lastFrameTime = 0;
-      const render = (time) => {
-        if (time - lastFrameTime < 1000 / targetFPS) {
-          animationRef.current = requestAnimationFrame(render);
-          return;
-        }
-        lastFrameTime = time;
-
+      const render = () => {
         for (let i = 0; i < positions.length; i += 2) {
           const dx = positions[i] - mouse.current.x;
           const dy = positions[i + 1] - mouse.current.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
+          const dist = Math.sqrt(distSq);
 
           const origX = originalPositions[i];
           const origY = originalPositions[i + 1];
 
-          if (dist < adjustedDistortionRadius) {
-            const force = adjustedForceStrength * (1 - dist / adjustedDistortionRadius);
+          if (dist < distortionRadius) {
+            const force = forceStrength * (1 - dist / distortionRadius);
             velocities[i] += dx * force;
             velocities[i + 1] += dy * force;
           }
@@ -171,8 +139,8 @@ const LogoModel = ({
           const returnDx = origX - positions[i];
           const returnDy = origY - positions[i + 1];
 
-          velocities[i] += returnDx * adjustedReturnForce;
-          velocities[i + 1] += returnDy * adjustedReturnForce;
+          velocities[i] += returnDx * returnForce;
+          velocities[i + 1] += returnDy * returnForce;
 
           velocities[i] *= 0.9;
           velocities[i + 1] *= 0.9;
@@ -198,35 +166,21 @@ const LogoModel = ({
 
     const handleResize = () => resizeCanvas(canvas, gl);
     window.addEventListener("resize", handleResize);
-
-    // Throttle mousemove to ~60fps max
-    let lastMouseMove = 0;
-    const onMouseMove = (e) => {
-      const now = performance.now();
-      if (now - lastMouseMove < 16) return;
-      lastMouseMove = now;
-
+    canvas.addEventListener("mousemove", (e) => {
       const rect = canvas.getBoundingClientRect();
       const scaleX = canvas.width / rect.width;
       const scaleY = canvas.height / rect.height;
       mouse.current.x = (e.clientX - rect.left) * scaleX;
       mouse.current.y = (e.clientY - rect.top) * scaleY;
-    };
-    canvas.addEventListener("mousemove", onMouseMove);
+    });
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      canvas.removeEventListener("mousemove", onMouseMove);
       cancelAnimationFrame(animationRef.current);
     };
   }, [logoPath, logoSize, logoColor, distortionRadius, forceStrength, returnForce]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{ width: "100%", height: "100%", display: "block", background: "transparent" }}
-    />
-  );
+  return <canvas ref={canvasRef} style={{ width: "100%", height: "100%", display: "block", background: "transparent" }} />;
 };
 
 export default LogoModel;

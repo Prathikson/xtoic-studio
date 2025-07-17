@@ -104,7 +104,7 @@ const About = () => {
 </div>
 
 
-      <div
+      {/* <div
         className="w-full flex justify-center items-center relative overflow-visible mt-40"
         style={{ height: 600 }}
       >
@@ -120,7 +120,7 @@ const About = () => {
         >
           <HeroTriangle size={600} videoSrc="" fillColor="#de0f3f" />
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };
